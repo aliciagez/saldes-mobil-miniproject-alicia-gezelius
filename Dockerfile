@@ -27,7 +27,7 @@ COPY --from=builder /app/src /app/src
 
 ENV PATH="/app/.venv/bin:$PATH"
 
-ENV PYTHONPATH="app/src"
+ENV PYTHONPATH="/app/src"
 
 COPY approved-modell/ approved-modell/
 

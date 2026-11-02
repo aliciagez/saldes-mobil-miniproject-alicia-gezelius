@@ -5,10 +5,10 @@ import pandas as pd
 from churn.data import skapa_features, FEATURES 
 from pathlib import Path 
 import joblib 
-MODELLFIL= Path("approved-model/modell.joblib")
+MODELLFIL= Path("approved-modell/modell.joblib")
 modell=joblib.load(MODELLFIL)
 import json
-matvarden = json.loads(Path("approved-model/matvarden.json").read_text()) # 
+matvarden = json.loads(Path("approved-modell/matvarden.json").read_text()) # 
 modellversion= matvarden["commit"]
 
 app = FastAPI()

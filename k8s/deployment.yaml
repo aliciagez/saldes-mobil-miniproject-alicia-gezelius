@@ -4,6 +4,8 @@ metadata:
   name: saldes-app
 spec:
   replicas: 2
+  strategy:
+    type: Recreate
   selector:
     matchLabels: { app: saldes-app }
   template: 
@@ -12,7 +14,7 @@ spec:
     spec: 
       containers: 
         - name: saldes
-          image: ghcr.io/aliciagez/saldes-mobil-miniproject-alicia-gezelius:v0
+          image: ghcr.io/aliciagez/saldes-mobil-miniproject-alicia-gezelius:v2
           ports: 
           - containerPort: 8000  
           resources:
