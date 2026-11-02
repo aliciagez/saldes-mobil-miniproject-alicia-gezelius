@@ -7,3 +7,4 @@ tests/
 data/
 !data/sample.csv
 /outputs
+*.tar
