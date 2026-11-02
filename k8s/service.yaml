@@ -1,0 +1,10 @@
+apiVersion: v0
+kind: Service 
+metadata:
+  name: saldes-app
+spec:
+  selector: 
+    app: saldes-app
+  ports: 
+    - ports: 80
+      targetPort: 80
