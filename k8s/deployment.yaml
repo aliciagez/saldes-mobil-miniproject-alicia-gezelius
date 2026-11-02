@@ -12,7 +12,7 @@ spec:
     spec: 
       containers: 
         - name: sales-image
-          image: ghcr.io/aliciagez/saldes-mobil-miniproject-alicia-gezelius:0dfc20851026a82899cc90aff8453e75b466ebba 
+          image: ghcr.io/aliciagez/saldes-mobil-miniproject-alicia-gezelius:v0
           ports: 
             containers: 8000  
           resources:
