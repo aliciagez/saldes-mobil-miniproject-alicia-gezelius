@@ -28,5 +28,6 @@ htmlcov/
 .DS_Store
 Thumbs.db
 approved-modell/
+*.tar
 
 
