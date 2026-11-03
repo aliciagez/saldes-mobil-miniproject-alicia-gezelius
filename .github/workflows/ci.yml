@@ -122,13 +122,13 @@ jobs:
        uses: actions/download-artifact@v4
        with:
          name: modell-${{ github.sha }}
-         path: approved-model/
+         path: approved-modell/
 
-     - name: save approved model version  
+     - name: save approved modell version  
        uses: actions/upload-artifact@v4 
        with:
         name: approved-modell-${{ github.sha }}
-        path: approved-model/
+        path: approved-modell/
         if-no-files-found: error 
 
   api_contract_tests:
@@ -146,7 +146,7 @@ jobs:
         uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
         with:
           name: approved-modell-${{ github.sha }}
-          path: approved-model/
+          path: approved-modell/
 
       - name: Run API contract tests
         run: uv run pytest tests/test_api_contract.py -v
@@ -157,6 +157,7 @@ jobs:
     permissions:
       contents: read
       actions: read
+      packages: write
      
 
   ringlista:
