@@ -10,7 +10,8 @@ COPY pyproject.toml uv.lock ./
 
 COPY src/ ./src/
 
-RUN uv sync --locked --no-dev
+RUN --mount=type=cache,target=/root/.cache/uv \
+    uv sync --locked --no-dev
 
 
 
@@ -26,11 +27,12 @@ COPY --from=builder /app/src /app/src
 
 ENV PATH="/app/.venv/bin:$PATH"
 
-ENV PYTHONPATH="app/src"
+ENV PYTHONPATH="/app/src"
 
-COPY approved-model/ approved-model/
+COPY approved-modell/ approved-modell/
 
 USER app
+
 
 EXPOSE  8000
 
