@@ -51,7 +51,7 @@ jobs:
       - name: run smoketest
         run: uv run --extra dev pytest tests/test_smoke.py -v
 
-            - name: log in ghcr
+      - name: log in ghcr
         if: github.ref == 'refs/heads/main'
         uses: docker/login-action@v4
         with: 
