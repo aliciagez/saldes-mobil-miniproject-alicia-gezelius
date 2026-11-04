@@ -9,6 +9,8 @@ on:
       - "pyproject.toml"
       - ".github/workflows/**"
       - "kontroller/**"
+      - "Dockerfile"
+      - "k8s/**"
 
   pull_request:
     branches: [main]
@@ -19,6 +21,8 @@ on:
       - "pyproject.toml"
       - ".github/workflows/**"
       - "kontroller/**"
+      - "Dockerfile"
+      - "k8s/*
 
 
   workflow_dispatch:
