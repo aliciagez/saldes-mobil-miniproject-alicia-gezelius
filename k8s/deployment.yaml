@@ -17,10 +17,25 @@ spec:
     spec: 
       containers: 
         - name: saldes
-          image: ghcr.io/aliciagez/saldes-mobil-miniproject-alicia-gezelius:v0
+          image: ghcr.io/aliciagez/saldes-mobil-miniproject-alicia-gezelius:v2
           ports: 
           - containerPort: 8000  
           resources:
             requests: { cpu: 100m, memory: 128Mi }
             limits: { cpu: 500m, memory: 512Mi }  
+
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+          initialDelaySeconds: 15
+          periodSeconds: 10
+
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+          initialDelaySeconds: 15
+          periodSeconds: 10
+            
   
