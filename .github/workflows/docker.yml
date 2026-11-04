@@ -10,6 +10,7 @@ jobs:
     permissions:
       contents: read
       actions: read
+      packages: write
 
     steps:
       - name: Checkout repository
@@ -19,12 +20,12 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: approved-modell-${{ github.sha }}
-          path: approved-model/
+          path: approved-modell/
 
       - name: Verify model files
         run: |
-          test -f approved-model/modell.joblib
-          test -f approved-model/matvarden.json
+          test -f approved-modell/modell.joblib
+          test -f approved-modell/matvarden.json
 
       - name: Build Docker image
         run: docker build -t churn-api:test .
