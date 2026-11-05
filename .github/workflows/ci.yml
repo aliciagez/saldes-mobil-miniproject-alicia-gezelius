@@ -162,7 +162,32 @@ jobs:
       contents: read
       actions: read
       packages: write
-     
+ 
+  deploy-productions:
+    needs: docker 
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-24.04
+    environment: production
+
+    steps: 
+      - name: deploy kube
+        uses: azure/setup-kubectl@v4 
+
+      - name: deploy
+        env: 
+          KUBE_CONFIG_SECRET: ${{ secrets.KUBE_CONFIG }}
+        run: | 
+          printf '%s' "$KUBE_CONFIG_SECRET" > "$RUNNER_TEMP/kubeconfig"
+          export KUBECONFIG="$RUNNER_TEMP/kubeconfig"
+
+          kubectl --context=mlops-ht26 -n alicia-gezelius \
+            set image deployment/saldes-app \
+            saldes=ghcr.io/aliciagez/saldes-mobil-miniproject-alicia-gezelius:${GITHUB_SHA}
+
+          kubectl --context=mlops-ht26 -n alicia-gezelius \
+            rollout status deployment/saldes-app --timeout=180s
+             
+
 
   ringlista:
     needs: versionera_modell 
