@@ -170,8 +170,7 @@ jobs:
     environment: production
 
     steps: 
-      - name: install kubectl
-        uses: actions/checkout@v4 
+     
       - name: deploy kube
         uses: azure/setup-kubectl@v4 
         env: 
