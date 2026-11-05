@@ -177,7 +177,7 @@ jobs:
         env: 
           KUBE_CONFIG_SECRET: ${{ secrets.KUBE_CONFIG }}
         run: | 
-          if [ -z "KUBE_CONFIG_SECRET"]; then
+          if [ -z "$KUBE_CONFIG_SECRET"]; then
             echo "config saknas"
             exit 1
           fi
