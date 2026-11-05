@@ -170,18 +170,19 @@ jobs:
     environment: production
 
     steps: 
-     
       - name: deploy kube
         uses: azure/setup-kubectl@v4 
+
+      - name: deploy
         env: 
-          KUBE_CONFIG_SECRET: ${{ secrets.KUBE_CONFIG}}
+          KUBE_CONFIG_SECRET: ${{ secrets.KUBE_CONFIG }}
         run: | 
           printf '%s' "$KUBE_CONFIG_SECRET" > "$RUNNER_TEMP/kubeconfig"
-          export KUBECONFIG= "$RUNNER_TEMP/kubeconfig"
+          export KUBECONFIG="$RUNNER_TEMP/kubeconfig"
 
           kubectl --context=mlops-ht26 -n alicia-gezelius \
             set image deployment/saldes-app \
-            saldes=gchr.io/aliciagez/saldes-mobil-miniproject-alicia-gezelius:${GITHUB_SHA}
+            saldes=ghcr.io/aliciagez/saldes-mobil-miniproject-alicia-gezelius:${GITHUB_SHA}
 
           kubectl --context=mlops-ht26 -n alicia-gezelius \
             rollout status deployment/saldes-app --timeout=180s
