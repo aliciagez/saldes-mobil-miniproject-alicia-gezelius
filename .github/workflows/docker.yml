@@ -68,7 +68,7 @@ jobs:
       - name: image name 
         id: image 
         if: github.ref == 'refs/heads/main'   
-        run: echo "name=gchr.io{GITHUB_REPOSITORY,,}" >> "$GITHUB_OUTPUT"
+        run: echo "name=ghcr.io/${GITHUB_REPOSITORY,,}" >> "$GITHUB_OUTPUT"
 
       - name: push to ghcr    
         if: github.ref == 'refs/heads/main'      
@@ -76,7 +76,7 @@ jobs:
         with:
           context: .
           push: ${{ github.ref_name == 'main' }}
-          tags: ghcr.io/${{ steps.image.outputs.name }}:${{ github.sha }}
+          tags: ${{ steps.image.outputs.name }}:${{ github.sha }}
           platforms: linux/amd64,linux/arm64
           cache-from: type=gha
           cache-to: type=gha,mode=max
