@@ -163,7 +163,7 @@ jobs:
       actions: read
       packages: write
  
-  deploy productions:
+  deploy-productions:
     needs: docker 
     if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     runs-on: ubuntu-24.04
