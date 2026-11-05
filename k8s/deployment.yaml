@@ -17,7 +17,7 @@ spec:
     spec: 
       containers: 
         - name: saldes
-          image: ghcr.io/aliciagez/saldes-mobil-miniproject-alicia-gezelius:v2
+          image: ghcr.io/aliciagez/saldes-mobil-miniproject-alicia-gezelius:${GITHUB_SHA}
           ports: 
           - containerPort: 8000  
           resources:
