@@ -162,7 +162,23 @@ jobs:
       contents: read
       actions: read
       packages: write
-     
+ 
+  deploy productions:
+    needs: docker 
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-24.04
+    enviorment: production
+
+    steps: 
+        uses: actions/checkout@v4 
+        uses: azure/setup-kubectl@v4 
+        env: 
+          KUBE_CONFIG_SECRET: ${{ secrets.KUBE_SECRET}}
+        run: | 
+          kubect --context=mlops-ht26 -n alicia-gezelius \
+            set image deployment/saldes-app \
+             
+
 
   ringlista:
     needs: versionera_modell 
