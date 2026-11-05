@@ -167,7 +167,7 @@ jobs:
     needs: docker 
     if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     runs-on: ubuntu-24.04
-    enviorment: production
+    enviroment: production
 
     steps: 
         uses: actions/checkout@v4 
