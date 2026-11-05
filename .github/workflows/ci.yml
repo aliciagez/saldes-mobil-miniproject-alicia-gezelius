@@ -175,8 +175,13 @@ jobs:
         env: 
           KUBE_CONFIG_SECRET: ${{ secrets.KUBE_SECRET}}
         run: | 
+          printf '%s' "$KUBE_CONFIG_SECRET" > "$RUNNER_TEMP/kubeconfig"
+          export KUBECONFIG= "$$RUNNER_TEMP/kubeconfig"
           kubect --context=mlops-ht26 -n alicia-gezelius \
             set image deployment/saldes-app \
+
+          kubect --context=mlops-ht26 -n alicia-gezelius \
+            rollout status deployment/saldes-app --timeout=180s
              
 
 
